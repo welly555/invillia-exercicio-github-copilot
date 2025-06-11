@@ -27,6 +27,23 @@ document.addEventListener("DOMContentLoaded", () => {
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
         `;
 
+        // Adiciona lista de participantes inscritos
+        const participantsDiv = document.createElement("div");
+        participantsDiv.className = "participants-list";
+        if (details.participants && details.participants.length > 0) {
+          const ul = document.createElement("ul");
+          details.participants.forEach(email => {
+            const li = document.createElement("li");
+            li.textContent = email;
+            ul.appendChild(li);
+          });
+          participantsDiv.innerHTML = "<strong>Inscritos:</strong>";
+          participantsDiv.appendChild(ul);
+        } else {
+          participantsDiv.innerHTML = "<strong>Inscritos:</strong> Nenhum participante ainda.";
+        }
+        activityCard.appendChild(participantsDiv);
+
         activitiesList.appendChild(activityCard);
 
         // Add option to select dropdown
